@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
+import { motion } from 'framer-motion';
+
 export const Container = styled.div`
   display: flex;
   height: 100%;
+
+  overflow-x: hidden;
 `;
 
-export const Content = styled.div`
+export const Content = styled(motion.div).attrs({
+  initial: { x: '-100%', opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  transition: { duration: 0.5 },
+})`
   width: 500px;
   padding: 56px 72px;
 
@@ -51,26 +59,6 @@ export const Content = styled.div`
         color: ${shade(0.2, '#b1b1b1')};
       }
     }
-
-    button {
-      flex: 1;
-      border: 0;
-
-      background: #11998e;
-      border-radius: 5px;
-
-      font-weight: bold;
-      font-size: 16px;
-      color: #ffffff;
-
-      padding: 10px;
-
-      transition: background-color 0.2s;
-
-      &:hover {
-        background: ${shade(0.2, '#11998e')};
-      }
-    }
   }
 
   > span {
@@ -86,7 +74,11 @@ export const Content = styled.div`
   }
 `;
 
-export const Background = styled.div`
+export const Background = styled(motion.div).attrs({
+  initial: { x: '100%' },
+  animate: { x: 0 },
+  transition: { duration: 0.5 },
+})`
   flex: 1;
   display: flex;
   align-items: center;

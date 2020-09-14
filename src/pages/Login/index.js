@@ -3,6 +3,7 @@ import React from 'react';
 import logoImg from '../../assets/logo.svg';
 import noteImg from '../../assets/note.svg';
 
+import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 import { Container, Content, Background } from './styles';
@@ -28,7 +29,7 @@ function Login() {
             <a href="/">Esqueci minha senha</a>
           </span>
 
-          <button type="submit">Entrar</button>
+          <Button type="submit">Entrar</Button>
         </form>
 
         <span>
