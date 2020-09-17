@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiSliders, FiSettings } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 
 import minilogoImg from '../../assets/minilogo.svg';
 import logoColorfulImg from '../../assets/logo-colorful.svg';
@@ -7,12 +8,18 @@ import logoColorfulImg from '../../assets/logo-colorful.svg';
 import { Container, Logo, Navigation, Menu, Divider } from './styles';
 
 function Sidebar() {
-  const [isCompacted, setIsCompacted] = useState(false);
+  const [isCompacted, setIsCompacted] = useState(true);
 
   return (
-    <Container>
+    <Container
+      layout
+      onHoverStart={() => setIsCompacted(false)}
+      onHoverEnd={() => setIsCompacted(true)}
+      onMouseLeave={() => setIsCompacted(true)}
+      transition={{ duration: 0.2 }}
+    >
       <Navigation isCompacted={isCompacted}>
-        <div>
+        <motion.div>
           <Logo
             src={isCompacted ? minilogoImg : logoColorfulImg}
             alt="Abstract"
@@ -21,25 +28,31 @@ function Sidebar() {
           <Divider />
 
           <Menu isCompacted={isCompacted}>
-            <button type="button" className="active">
+            <motion.button type="button" className="active">
               <FiSliders />
-              <span>Painel de controle</span>
-            </button>
+              <motion.span>Painel de controle</motion.span>
+            </motion.button>
 
-            <button type="button">
+            <motion.button type="button">
               <FiSettings />
-              <span>Configurações</span>
-            </button>
+              <motion.span>Configurações</motion.span>
+            </motion.button>
           </Menu>
-        </div>
+        </motion.div>
 
-        <button type="button" onClick={() => setIsCompacted(state => !state)}>
-          <img src="https://github.com/srsantosdev.png" alt="Samuel Ramos" />
-          <div>
-            <span>Samuel Ramos</span>
-            <strong>Administrador</strong>
-          </div>
-        </button>
+        <motion.button
+          type="button"
+          onClick={() => setIsCompacted(state => !state)}
+        >
+          <motion.img
+            src="https://github.com/srsantosdev.png"
+            alt="Samuel Ramos"
+          />
+          <motion.div>
+            <motion.span>Samuel Ramos</motion.span>
+            <motion.strong>Administrador</motion.strong>
+          </motion.div>
+        </motion.button>
       </Navigation>
     </Container>
   );
